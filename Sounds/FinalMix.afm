@@ -6,19 +6,19 @@ AudioOutputStateResClass {
    tl -1472 -1392
    res "{8A428597F8C3A3ED}Sounds/_SharedData/Signals/FinalMix/FinalMix_Interior.sig"
    inputsport {
-    1 3 10
+    1
    }
    outputsport {
     2 14 19 25 27 31
    }
    inputvalues {
-    0 0 0
+    0
    }
    inputvaluesmin {
-    0 0 0
+    0
    }
    inputvaluesmax {
-    1 1 1
+    1
    }
    path "{8A428597F8C3A3ED}Sounds/_SharedData/Signals/FinalMix/FinalMix_Interior.sig"
   }
@@ -85,7 +85,7 @@ AudioOutputStateResClass {
   SignalClass {
    id 295949
    name "Signal Reverb Mix"
-   tl 272 1072
+   tl 272 960
    res "{F3424AB4FFF40B4D}Sounds/_SharedData/Signals/FinalMix/FinalMix_ReverbMix.sig"
    inputsport {
     14
@@ -283,7 +283,7 @@ AudioOutputStateResClass {
    id 156694
    name "HPF"
    version 5
-   tl -1680 3296
+   tl -1680 3744
    pi {
     1 0
    }
@@ -297,7 +297,7 @@ AudioOutputStateResClass {
    id 157718
    name "LPF"
    version 5
-   tl -1680 3376
+   tl -1680 3824
    pi {
     1 0
    }
@@ -370,7 +370,7 @@ AudioOutputStateResClass {
    id 194582
    name "REVERB"
    version 5
-   tl -1680 3200
+   tl -1680 3648
    ins {
     ConnectionsClass connections {
      id 2
@@ -413,7 +413,7 @@ AudioOutputStateResClass {
    id 199702
    name "REVERB EXT"
    version 5
-   tl 464 2016
+   tl 464 2432
    pi {
     1 0
    }
@@ -430,7 +430,7 @@ AudioOutputStateResClass {
    id 200726
    name "LPF"
    version 5
-   tl 464 2176
+   tl 464 2592
    pi {
     1 0
    }
@@ -443,7 +443,7 @@ AudioOutputStateResClass {
    id 201750
    name "HPF"
    version 5
-   tl 464 2096
+   tl 464 2512
    pi {
     1 0
    }
@@ -457,7 +457,7 @@ AudioOutputStateResClass {
    id 296982
    name "Filter Reverb Small"
    version 5
-   tl 496 1072
+   tl 496 960
    ins {
     ConnectionsClass connections {
      id 6
@@ -470,7 +470,7 @@ AudioOutputStateResClass {
     }
    }
    pi {
-    67 0
+    65 0
    }
    volume_dB 15
    DSPObject SmallRoomReverbDSPTypeClass dsp {
@@ -485,7 +485,7 @@ AudioOutputStateResClass {
    id 298006
    name "Filter Reverb Medium"
    version 5
-   tl 496 1328
+   tl 496 1216
    ins {
     ConnectionsClass connections {
      id 2
@@ -498,7 +498,7 @@ AudioOutputStateResClass {
     }
    }
    pi {
-    7 0
+    5 0
    }
    volume_dB 10
    DSPObject Reverb2DSPTypeClass dsp {
@@ -513,7 +513,7 @@ AudioOutputStateResClass {
    id 299030
    name "Filter Reverb Large"
    version 5
-   tl 496 1584
+   tl 496 1472
    ins {
     ConnectionsClass connections {
      id 2
@@ -526,7 +526,7 @@ AudioOutputStateResClass {
     }
    }
    pi {
-    7 0
+    5 0
    }
    volume_dB 10
    DSPObject Reverb2DSPTypeClass dsp {
@@ -565,24 +565,10 @@ AudioOutputStateResClass {
    }
   }
   FilterClass {
-   id 317462
-   name "Filter Distortion"
-   version 5
-   tl 304 -864
-   pi {
-    1 0
-   }
-   wetDry 0.6
-   DSPObject DistortionDSPTypeClass dsp {
-    distortionType HardClipper
-    drive 7
-   }
-  }
-  FilterClass {
    id 318486
    name "Filter High Shelf"
    version 5
-   tl 304 -784
+   tl 302.85 -688.55
    pi {
     1 0
    }
@@ -668,7 +654,7 @@ AudioOutputStateResClass {
    id 344086
    name "Filter Delay"
    version 5
-   tl -1264 2528
+   tl -1264 2976
    pi {
     1 0
    }
@@ -682,6 +668,65 @@ AudioOutputStateResClass {
     dampingMax 0.3
     feedbackMin 0.1
     feedbackMax 0.2
+   }
+  }
+  FilterClass {
+   id 345110
+   name "Filter Reverb Vehicle Cabin"
+   version 5
+   tl 496 1872
+   pi {
+    1 0
+   }
+   volume_dB 15
+   DSPObject SmallRoomReverbDSPTypeClass dsp {
+    earlyReflectionsTime 0.08
+    lateReflectionsTime 0.15
+    lateReflectionsDensity 0.29
+    lateReflectionsDamping 0.9
+    width 0.95
+   }
+  }
+  FilterClass {
+   id 349206
+   name "Filter Reverb Vehicle Cabin EQ"
+   version 5
+   tl 496 1792
+   pi {
+    1 0
+   }
+   DSPObject BiquadDSPTypeClass dsp {
+    biquadType HighShelf
+    fc 8000
+    gain -4
+   }
+  }
+  FilterClass {
+   id 351254
+   name "Filter Low Pass"
+   version 5
+   tl 256 2208
+   pi {
+    1 0
+   }
+   DSPObject BiquadDSPTypeClass dsp {
+    fc 240
+    Q 0.6
+   }
+  }
+  FilterClass {
+   id 353302
+   name "Filter MonoToStereo"
+   comment "Feels like panned to left a bit. No clue what to do with that"
+   version 5
+   tl 256 2128
+   ctl 0 -24
+   pi {
+    1 0
+   }
+   wetDry 0.5
+   DSPObject MonoToStereoDSPTypeClass dsp {
+    delayTime 11
    }
   }
  }
@@ -719,7 +764,7 @@ AudioOutputStateResClass {
    id 155671
    name "Reverb INT"
    version 5
-   tl -1456 3280
+   tl -1456 3728
    ins {
     ConnectionsClass connections {
      id 1
@@ -758,7 +803,7 @@ AudioOutputStateResClass {
    id 202775
    name "Reverb EXT"
    version 5
-   tl 688 2080
+   tl 688 2496
    ins {
     ConnectionsClass connections {
      id 1
@@ -794,32 +839,6 @@ AudioOutputStateResClass {
    ports 3
   }
   FilterChainClass {
-   id 319511
-   name "FilterChain 312"
-   version 5
-   tl 304 -704
-   ins {
-    ConnectionsClass connections {
-     id 1
-     links {
-      ConnectionClass connection {
-       id 317462
-       port 65
-      }
-     }
-    }
-    ConnectionsClass connections {
-     id 2
-     links {
-      ConnectionClass connection {
-       id 318486
-       port 65
-      }
-     }
-    }
-   }
-  }
-  FilterChainClass {
    id 336919
    name "FilterChain Shots"
    version 5
@@ -839,6 +858,58 @@ AudioOutputStateResClass {
      links {
       ConnectionClass connection {
        id 335894
+       port 65
+      }
+     }
+    }
+   }
+  }
+  FilterChainClass {
+   id 348183
+   name "FilterChain 340"
+   version 5
+   tl 496 1952
+   ins {
+    ConnectionsClass connections {
+     id 1
+     links {
+      ConnectionClass connection {
+       id 349206
+       port 65
+      }
+     }
+    }
+    ConnectionsClass connections {
+     id 2
+     links {
+      ConnectionClass connection {
+       id 345110
+       port 65
+      }
+     }
+    }
+   }
+  }
+  FilterChainClass {
+   id 352279
+   name "FilterChain Cabin Reverb Bass"
+   version 5
+   tl 496 2192
+   ins {
+    ConnectionsClass connections {
+     id 1
+     links {
+      ConnectionClass connection {
+       id 353302
+       port 65
+      }
+     }
+    }
+    ConnectionsClass connections {
+     id 2
+     links {
+      ConnectionClass connection {
+       id 351254
        port 65
       }
      }
@@ -1036,7 +1107,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 19463
    name "Dialog"
-   tl -1264 2448
+   tl -1264 2896
    type In
    master Dialog
    limit 6
@@ -1045,7 +1116,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 22535
    name "Music"
-   tl -1264 3520
+   tl -1264 3968
    channels "2"
    type In
    master Music
@@ -1085,7 +1156,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 77831
    name "VON"
-   tl -1264 3184
+   tl -1264 3632
    type In
    master Voice
    color 0.659 0.506 0.812 1
@@ -1100,7 +1171,8 @@ AudioOutputStateResClass {
   OBusClass {
    id 152583
    name "SFX_Reverb"
-   tl -1248 1456
+   tl -1248 1344
+   ctl 0 -24
    volume 1.413
    volume_dB 3
    type In
@@ -1109,7 +1181,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 160775
    name "VON_Reverb"
-   tl -1264 3280
+   tl -1264 3728
    ins {
     ConnectionsClass connections {
      id 1
@@ -1132,7 +1204,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 163847
    name "Dialog_Reverb"
-   tl -1264 2688
+   tl -1264 3136
    type In
    master Dialog
    color 0.506 0.584 0.812 1
@@ -1216,7 +1288,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 197639
    name "SFX_Reverb_Exterior"
-   tl -1264 2176
+   tl -1264 2592
    volume 1.995
    volume_dB 6
    type In
@@ -1225,7 +1297,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 26631
    name "UI"
-   tl -1280 3776
+   tl -1280 4224
    channels "2"
    type In
    master UI
@@ -1233,7 +1305,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 204807
    name "ENV_AMB_3D_Reverb_Exterior"
-   tl -1264 2288
+   tl -1264 2704
    ins {
     ConnectionsClass connections {
      id 1
@@ -1262,7 +1334,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 300039
    name "SFX_Reverb_Small"
-   tl -1248 1616
+   tl -1248 1504
    volume 1.413
    volume_dB 3
    type In
@@ -1270,7 +1342,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 301063
    name "SFX_Reverb_Medium"
-   tl -1248 1696
+   tl -1248 1584
    volume 1.413
    volume_dB 3
    type In
@@ -1278,7 +1350,7 @@ AudioOutputStateResClass {
   OBusClass {
    id 302087
    name "SFX_Reverb_Large"
-   tl -1248 1776
+   tl -1248 1664
    volume 1.413
    volume_dB 3
    type In
@@ -1293,28 +1365,35 @@ AudioOutputStateResClass {
   OBusClass {
    id 338951
    name "Dialog_Reverb_Small"
-   tl -1264 2768
+   tl -1264 3216
    type In
    master Dialog
   }
   OBusClass {
    id 339975
    name "Dialog_Reverb_Medium"
-   tl -1264 2848
+   tl -1264 3296
    type In
    master Dialog
   }
   OBusClass {
    id 340999
    name "Dialog_Reverb_Large"
-   tl -1264 2928
+   tl -1264 3376
    type In
    master Dialog
   }
   OBusClass {
+   id 342023
+   name "WPN_TravelingProjectile"
+   tl -1264 -832
+   type In
+   color 0.937 0.82 0.91 1
+  }
+  OBusClass {
    id 343047
    name "Dialog_Delay_Exterior"
-   tl -1264 2608
+   tl -1264 3056
    ins {
     ConnectionsClass connections {
      id 1
@@ -1331,6 +1410,12 @@ AudioOutputStateResClass {
    }
    type In
    master Dialog
+  }
+  OBusClass {
+   id 346119
+   name "SFX_Reverb_InCabin"
+   tl -1264 2064
+   type In
   }
  }
  Duckers {
@@ -1381,7 +1466,7 @@ AudioOutputStateResClass {
    id 100378
    name "Expander VEH"
    comment "Increase VON volume when driving"
-   tl 1088 3104
+   tl 1088 3552
    ctl 0 -21
    ins {
     ConnectionsClass connections {
@@ -1527,12 +1612,21 @@ AudioOutputStateResClass {
    parent -1
    Color 0.6 0.6 0.6 0.251
   }
+  GroupClass {
+   id 350211
+   name "Reverb Vehicle Cabin"
+   children {
+    349206 345110 348183 346119 347168 350240 352279 354336 351254 353302
+   }
+   parent -1
+   Color 0.6 0.6 0.6 0.251
+  }
  }
  bus_out {
   OBusOutClass {
    id 217120
    name "Output UI"
-   tl 1840 3776
+   tl 1840 4224
    ins {
     ConnectionsClass connections {
      id 64
@@ -1550,7 +1644,7 @@ AudioOutputStateResClass {
   OBusOutClass {
    id 220191
    name "Output Music"
-   tl 1840 3520
+   tl 1840 3968
    ins {
     ConnectionsClass connections {
      id 64
@@ -1568,7 +1662,7 @@ AudioOutputStateResClass {
   OBusOutClass {
    id 221215
    name "Output Voice"
-   tl 1840 3184
+   tl 1840 3632
    ins {
     ConnectionsClass connections {
      id 64
@@ -1586,7 +1680,7 @@ AudioOutputStateResClass {
   OBusOutClass {
    id 222239
    name "Output Dialog"
-   tl 1840 2608
+   tl 1840 3056
    ins {
     ConnectionsClass connections {
      id 64
@@ -1732,6 +1826,14 @@ AudioOutputStateResClass {
        id 310304
        port 65
       }
+      ConnectionClass connection {
+       id 347168
+       port 65
+      }
+      ConnectionClass connection {
+       id 350240
+       port 65
+      }
      }
     }
    }
@@ -1762,6 +1864,10 @@ AudioOutputStateResClass {
       }
       ConnectionClass connection {
        id 184327
+       port 65
+      }
+      ConnectionClass connection {
+       id 342023
        port 65
       }
      }
@@ -1908,7 +2014,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 244768
    name "Dialogue + VON"
-   tl -624 2784
+   tl -624 3232
    ins {
     ConnectionsClass connections {
      id 64
@@ -1978,7 +2084,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 250912
    name "Reverb EXT"
-   tl 688 2208
+   tl 688 2624
    ins {
     ConnectionsClass connections {
      id 1
@@ -2011,7 +2117,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 251936
    name "Doors Wet"
-   tl -288 1520
+   tl -288 1408
    ins {
     ConnectionsClass connections {
      id 0
@@ -2041,7 +2147,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 253984
    name "SFX_Reverb"
-   tl -64 1456
+   tl -64 1344
    ins {
     ConnectionsClass connections {
      id 64
@@ -2069,7 +2175,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 256032
    name "InVehicle Expander"
-   tl 1088 3184
+   tl 1088 3632
    ins {
     ConnectionsClass connections {
      id 1
@@ -2110,7 +2216,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 258080
    name "Dialogue"
-   tl 1104 2608
+   tl 1104 3056
    ins {
     ConnectionsClass connections {
      id 1
@@ -2227,7 +2333,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 292896
    name "Bus Reverb Small TMP"
-   tl 272 1232
+   tl 272 1120
    ins {
     ConnectionsClass connections {
      id 0
@@ -2255,7 +2361,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 293920
    name "Bus Reverb Medium TMP"
-   tl 272 1456
+   tl 272 1344
    ins {
     ConnectionsClass connections {
      id 0
@@ -2283,7 +2389,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 294944
    name "Bus Reverb Large TPM"
-   tl 272 1712
+   tl 272 1600
    ins {
     ConnectionsClass connections {
      id 0
@@ -2311,7 +2417,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 303136
    name "Bus Reverb Large"
-   tl 496 1712
+   tl 496 1600
    ins {
     ConnectionsClass connections {
      id 0
@@ -2357,7 +2463,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 304160
    name "Bus Reverb Small"
-   tl 496 1200
+   tl 496 1088
    ins {
     ConnectionsClass connections {
      id 0
@@ -2403,7 +2509,7 @@ AudioOutputStateResClass {
   OBusInOutClass {
    id 305184
    name "Bus Reverb Medium"
-   tl 496 1456
+   tl 496 1344
    ins {
     ConnectionsClass connections {
      id 0
@@ -2464,7 +2570,7 @@ AudioOutputStateResClass {
      id 1
      links {
       ConnectionClass connection {
-       id 319511
+       id 318486
        port 65
       }
      }
@@ -2663,6 +2769,95 @@ AudioOutputStateResClass {
    pi {
     2 0
    }
+  }
+  OBusInOutClass {
+   id 347168
+   name "Bus Reverb InCabin"
+   tl 496 2048
+   ins {
+    ConnectionsClass connections {
+     id 0
+     links {
+      ConnectionClass connection {
+       id 306189
+       port 138
+      }
+     }
+    }
+    ConnectionsClass connections {
+     id 1
+     links {
+      ConnectionClass connection {
+       id 348183
+       port 65
+      }
+     }
+    }
+    ConnectionsClass connections {
+     id 64
+     links {
+      ConnectionClass connection {
+       id 346119
+       port 65
+      }
+     }
+    }
+   }
+   pi {
+    3 0
+   }
+   channels "2"
+  }
+  OBusInOutClass {
+   id 350240
+   name "Bus Reverb Bass"
+   tl 496 2288
+   ins {
+    ConnectionsClass connections {
+     id 1
+     links {
+      ConnectionClass connection {
+       id 352279
+       port 65
+      }
+     }
+    }
+    ConnectionsClass connections {
+     id 64
+     links {
+      ConnectionClass connection {
+       id 354336
+       port 65
+      }
+     }
+    }
+   }
+   pi {
+    2 0
+   }
+   channels "2"
+  }
+  OBusInOutClass {
+   id 354336
+   name "Bus To Mono"
+   tl 256 2288
+   ins {
+    ConnectionsClass connections {
+     id 64
+     links {
+      ConnectionClass connection {
+       id 346119
+       port 65
+      }
+     }
+    }
+   }
+   pi {
+    2 0
+   }
+   volume 3.981
+   volume_dB 12
+   channels "1"
   }
  }
 }
